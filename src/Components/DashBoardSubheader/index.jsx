@@ -7,7 +7,7 @@ export default function DashboardSubHeader({user}) {
   return (
     <HeaderStyled height = '131px'>
      <Title1>Olá,  {formattedName}</Title1>
-     <InfoSpan>Primeiro módulo (Introdução ao Frontend)</InfoSpan>
+     <InfoSpan>{user.course_module}</InfoSpan>
     </HeaderStyled>
   );
 }
