@@ -37,14 +37,19 @@ export default function Register() {
     password: yup
       .string()
       .required("Senha obrigatória")
-      .test(
-        "passwordRequirements",
-        "Senha deve possuir no mínimo 8 caracteres tendo entre eles: Uma letra maiscúla, uma letra minuscula, um caractere especial e um número.",
-        (value) =>
-          [/[a-z]/, /[A-Z]/, /[0-9]/, /[^a-zA-Z0-9]/].every((pattern) =>
-            pattern.test(value)
-          )
+      .matches(
+        /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/,
+        "Senha deve possuir no mínimo 8 caracteres tendo entre eles: Uma letra maiscúla, uma letra minúscula, um caractere especial e um número."
       ),
+    // .test( // por algum motivo não funcionava o minLength
+    //   "passwordRequirements",
+    //   "Senha deve possuir no mínimo 8 caracteres tendo entre eles: Uma letra maiscúla, uma letra minuscula, um caractere especial e um número.",
+    //   (value) =>
+    //     [/[a-z]/, /[A-Z]/, /[0-9]/, /[^a-zA-Z0-9]/].every((pattern) =>
+    //       pattern.test(value)
+    //     )
+    //     // [/[a-z]/, /[A-Z]/, /[0-9]/, /[^a-zA-Z0-9]/]
+    // ),
     passwordConfirmation: yup
       .string()
       .required("Confirmação de senha obrigatória")
@@ -109,7 +114,7 @@ export default function Register() {
         pauseOnHover
       />
 
-      <Logo/>
+      <Logo />
       <RegisterDiv className="container user-form">
         <Title1Res>Crie sua conta</Title1Res>
         <InfoSpan>Rapido e grátis, vamos nessa</InfoSpan>
@@ -130,7 +135,8 @@ export default function Register() {
           <FormInput
             type="password"
             placeholder="Senha"
-            {...register("password")}
+            {...register("password", { minLength: 8 })}
+            rules={{ required: true, minLength: 3 }}
           />
           <ErrorLabel> {errors.password?.message}</ErrorLabel>
         </InputDiv>
