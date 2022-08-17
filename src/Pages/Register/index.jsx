@@ -1,25 +1,31 @@
+import React from "react";
+import axios from "axios";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useHistory } from "react-router-dom";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import * as yup from "yup";
 
-import { Logo } from "../../styles/logos";
+//components
+import Logo from "../../Components/Logo";
 
-import { GlobalForm } from "../../styles/forms";
-
+// styles import
 import {
-  FormInput,
-  PrimaryButton,
-  SecondButton,
-  ErrorLabel,
-  RegisterDiv,
   Title1Res,
   InfoSpan,
+  ErrorLabel,
   FormLabel,
+} from "../../styles/titles and text blocks";
+import { PrimaryButton, SecondButton } from "../../styles/buttons";
+
+import {
   FormSelect,
+  FormInput,
   InputDiv,
-} from "../../styles/global";
+} from "../../styles/inputs and selects";
+import { GlobalForm, RegisterDiv } from "../../styles/forms and divs";
+// styles import end
 
 export default function Register() {
   const history = useHistory();
@@ -59,12 +65,51 @@ export default function Register() {
   });
 
   const onSubmitFunction = (data) => {
-    console.log(data);
+    delete data.passwordConfirmation; // password confirmation para ter certeza que pessoas colocarão as senhas certas mas não há necessidade de envio para API
+
+    axios
+      .post("https://kenziehub.herokuapp.com/users", data)
+      .then((response) => {
+        console.log(response);
+        toast.success("Conta criada com sucesso!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("Ops! Algo deu errado", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      });
   };
 
   return (
     <GlobalForm className="form" onSubmit={handleSubmit(onSubmitFunction)}>
-      <Logo>Kenzie Hub</Logo>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+
+      <Logo/>
       <RegisterDiv className="container user-form">
         <Title1Res>Crie sua conta</Title1Res>
         <InfoSpan>Rapido e grátis, vamos nessa</InfoSpan>
@@ -145,14 +190,14 @@ export default function Register() {
         <InfoSpan>Já possui uma conta ?</InfoSpan>
 
         <InputDiv>
-        <SecondButton 
-          onClick={(event) => {
-            event.preventDefault();
-            history.push(`/`);
-          }}
-        >
-          Entrar
-        </SecondButton>
+          <SecondButton
+            onClick={(event) => {
+              event.preventDefault();
+              history.push(`/`);
+            }}
+          >
+            Entrar
+          </SecondButton>
         </InputDiv>
       </RegisterDiv>
     </GlobalForm>
