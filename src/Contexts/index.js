@@ -1,5 +1,5 @@
 import LoginProvider from "./Login";
-import RegisterProvider from "./Register/RegisterContext";
+import RegisterProvider from "./Register";
 
 
 const Providers = ({ children }) => {

@@ -1,7 +1,8 @@
 import { Switch, Route } from "react-router-dom";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import Dashboard from "./Pages/Dashboard";
@@ -14,12 +15,12 @@ function App() {
   function logout() {
     setUser({});
     window.localStorage.clear();
-    history.push('/')
-
+    history.push("/");
   }
 
   return (
     <div className="App">
+      <ToastContainer />
       <Switch>
         <Route exact path="/">
           <Login />

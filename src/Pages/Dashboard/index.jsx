@@ -5,9 +5,9 @@ import DashboardMain from "../../Components/DashboardMain";
 export default function Dashboard({ user, logout }) {
   return (
     <div>
-      <DashboardHeader logout={logout} />
-      <DashboardSubHeader user={user} />
-      <DashboardMain user={user} />
+      <DashboardHeader  />
+      <DashboardSubHeader  />
+      <DashboardMain  />
     </div>
   );
 }

@@ -1,11 +1,11 @@
 import React from "react";
-import axios from "axios";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useHistory } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
+// context
+import { useContext } from "react";
+import { RegisterContext } from "../../Contexts/Register";
 
 //components
 import Logo from "../../Components/Logo";
@@ -32,8 +32,7 @@ import { GlobalForm, RegisterDiv } from "../../styles/forms and divs";
 
 export default function Register() {
   const history = useHistory();
-
- 
+  const { signUp } = useContext(RegisterContext); //login function
 
   const {
     register,
@@ -43,51 +42,8 @@ export default function Register() {
     resolver: yupResolver(registerSchema),
   });
 
-  const onSubmitFunction = (data) => {
-    delete data.passwordConfirmation; // password confirmation para ter certeza que pessoas colocarão as senhas certas mas não há necessidade de envio para API
-
-    axios
-      .post("https://kenziehub.herokuapp.com/users", data)
-      .then((response) => {
-        console.log(response);
-        toast.success("Conta criada com sucesso!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-        toast.error("Ops! Algo deu errado", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      });
-  };
-
   return (
-    <GlobalForm className="form" onSubmit={handleSubmit(onSubmitFunction)}>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
-
+    <GlobalForm className="form" onSubmit={handleSubmit(signUp)}>
       <Logo />
       <RegisterDiv className="container user-form">
         <Title1Res>Crie sua conta</Title1Res>

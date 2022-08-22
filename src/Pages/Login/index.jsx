@@ -1,7 +1,5 @@
 import React from "react";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import axios from "axios";
+
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useHistory } from "react-router-dom";
@@ -31,7 +29,7 @@ import { GlobalForm, LoginDiv } from "../../styles/forms and divs";
 export default function Login({ setUser }) {
   const history = useHistory();
 
-  const{signIn} = useContext(LoginContext); //login function
+  const { signIn } = useContext(LoginContext); //login function
 
   const {
     register,
@@ -41,54 +39,8 @@ export default function Login({ setUser }) {
     resolver: yupResolver(loginSchema),
   });
 
-  const onSubmitFunction = (data) => {
-    axios
-      .post("https://kenziehub.herokuapp.com/sessions", data)
-      .then((response) => {
-        console.log(response);
-        window.localStorage.clear();
-        setUser(response.data.user);
-
-        window.localStorage.setItem("authToken", response.data.token);
-        setTimeout(() => history.push("/dashboard"), 2000);
-        toast.success("Login realizado com sucesso!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-        toast.error("Senha e/ou e-mail estão incorretos", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      });
-  };
-
   return (
-    <GlobalForm className="form" onSubmit={handleSubmit(onSubmitFunction)}>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
-
+    <GlobalForm className="form" onSubmit={handleSubmit(signIn)}>
       <Logo />
       <LoginDiv className="container user-form">
         <Title1Res>Login</Title1Res>
