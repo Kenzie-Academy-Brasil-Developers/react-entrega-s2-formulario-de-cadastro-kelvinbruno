@@ -5,7 +5,13 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useHistory } from "react-router-dom";
-import * as yup from "yup";
+
+// context
+import { useContext } from "react";
+import { LoginContext } from "../../Contexts/Login";
+
+//validator
+import { loginSchema } from "../../validators/login";
 
 //components
 import Logo from "../../Components/Logo";
@@ -22,31 +28,27 @@ import { PrimaryButton, SecondButton } from "../../styles/buttons";
 import { GlobalForm, LoginDiv } from "../../styles/forms and divs";
 // styles import end
 
-export default function Login({setUser}) {
+export default function Login({ setUser }) {
   const history = useHistory();
 
-  const formSchema = yup.object().shape({
-    email: yup.string().required("E-mail obrigatório").email("E-mail inválido"),
-    password: yup.string().required("Senha obrigatória"),
-  });
+  const{signIn} = useContext(LoginContext); //login function
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(formSchema),
+    resolver: yupResolver(loginSchema),
   });
 
   const onSubmitFunction = (data) => {
-    console.log(data);
     axios
       .post("https://kenziehub.herokuapp.com/sessions", data)
       .then((response) => {
         console.log(response);
         window.localStorage.clear();
         setUser(response.data.user);
-      
+
         window.localStorage.setItem("authToken", response.data.token);
         setTimeout(() => history.push("/dashboard"), 2000);
         toast.success("Login realizado com sucesso!", {

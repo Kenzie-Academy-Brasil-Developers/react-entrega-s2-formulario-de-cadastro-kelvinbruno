@@ -22,7 +22,7 @@ function App() {
     <div className="App">
       <Switch>
         <Route exact path="/">
-          <Login setUser={setUser} />
+          <Login />
         </Route>
 
         <Route exact path="/register">
