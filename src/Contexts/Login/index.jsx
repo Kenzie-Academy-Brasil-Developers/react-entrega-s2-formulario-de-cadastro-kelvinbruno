@@ -50,6 +50,11 @@ const LoginProvider = ({ children }) => {
         window.localStorage.setItem("@kenziehub:token", token);
         KenziehubAPI.defaults.headers.authorization = `Bearer ${token}`;
 
+        // KenziehubAPI.post('/users/techs', {
+        //   title: "React 1232",
+        //   status: "Iniciante"
+        // }).then(console.log('a'))
+
         toastSuccess("Login realizado com sucesso!");
       })
       .then(() => history.push("/dashboard")) // feito assim para poder carregar o toast antes

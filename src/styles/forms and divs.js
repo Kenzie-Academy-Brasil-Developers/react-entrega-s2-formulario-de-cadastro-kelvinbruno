@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Dashboard from "../Pages/Dashboard";
 
 export const GlobalForm = styled.form`
   display: flex;
@@ -35,6 +36,11 @@ export const LoginDiv = styled(DivFormPattern)`
     height: 402.69px;
   }
 `;
+
+export const ModalDiv = styled(LoginDiv)`
+padding-top: 0px;
+
+`
 export const RegisterDiv = styled(DivFormPattern)`
   min-height: 1000px;
 
@@ -64,8 +70,25 @@ export const MainStyled = styled.main`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  @media (max-width: 600px) { 
-    display: none;
+
+  i{
+    color:white;
   }
-  
+`;
+
+
+
+export const DashBoardOrganizer = styled.div`
+  width: 780px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  @media (max-width: 800px) {
+    width: 296px;
+    
+  }
 `;

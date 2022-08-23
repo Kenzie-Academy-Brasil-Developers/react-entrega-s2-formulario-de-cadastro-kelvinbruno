@@ -1,22 +1,18 @@
 import { Switch, Route } from "react-router-dom";
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
+
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import Dashboard from "./Pages/Dashboard";
 
+import Modal from "react-modal";
+
+Modal.setAppElement("#root");
+
 function App() {
-  const [user, setUser] = useState({});
 
-  const history = useHistory();
-
-  function logout() {
-    setUser({});
-    window.localStorage.clear();
-    history.push("/");
-  }
 
   return (
     <div className="App">
@@ -29,11 +25,10 @@ function App() {
         <Route exact path="/register">
           <Register />
         </Route>
-        {user.id && (
-          <Route exact path="/dashboard">
-            <Dashboard logout={logout} user={user} />
-          </Route>
-        )}
+
+        <Route exact path="/dashboard">
+          <Dashboard />
+        </Route>
       </Switch>
     </div>
   );

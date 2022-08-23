@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useHistory } from "react-router-dom";
+import { useHistory  } from "react-router-dom";
 
 // context
 import { useContext } from "react";

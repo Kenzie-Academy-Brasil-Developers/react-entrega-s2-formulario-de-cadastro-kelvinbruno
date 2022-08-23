@@ -14,13 +14,15 @@ const signUp = (data) =>{
 
   delete data.passwordConfirmation;
 
-  KenziehubAPI.post('/users', data).then(
-    toastSuccess('Conta criada com sucesso')
+  KenziehubAPI.post('/users', data) .then((response) => {
+    console.log(response)
+    toastSuccess('Conta criada com sucesso !')
+  })
     .catch((err) => {
       console.log(err)
       toastError('Ops! Algo deu errado')
     })
-  )
+  
 }
 
 
