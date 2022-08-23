@@ -6,6 +6,8 @@ import { LoginContext } from "../../Contexts/Login";
 
 import { TechsContext } from "../../Contexts/Techs";
 
+
+
 import Modal from "react-modal";
 
 import EditModal from "../EditModal";

@@ -14,6 +14,10 @@ import { TechsContext } from "../../Contexts/Techs";
 
 import RegisterModal from "../RegisterModal";
 
+import {
+  DashBoardTechListOrganizer,
+  DashBoardOrganizer,
+} from "../../styles/forms and divs";
 
 export default function DashboardMain() {
   const { modalIsOpen, handleCloseModal, handleOpenModal, customModal } =
@@ -21,15 +25,22 @@ export default function DashboardMain() {
 
   return (
     <MainStyled>
-      <Modal style={customModal} isOpen={modalIsOpen} onRequestClose={handleCloseModal}>
-        <RegisterModal/>
+      <Modal
+        style={customModal}
+        isOpen={modalIsOpen}
+        onRequestClose={handleCloseModal}
+      >
+        <RegisterModal />
       </Modal>
-
-      <Title1>Tecnologias</Title1>
-      <AddButton onClick={handleOpenModal}>
-        <i onClick={handleOpenModal} className="fa-solid fa-plus"></i>
-      </AddButton>
-      <DashboardTechList></DashboardTechList>
+      <DashBoardOrganizer>
+        <Title1>Tecnologias</Title1>
+        <AddButton onClick={handleOpenModal}>
+          <i onClick={handleOpenModal} className="fa-solid fa-plus"></i>
+        </AddButton>
+      </DashBoardOrganizer>
+      <DashBoardTechListOrganizer>
+        <DashboardTechList></DashboardTechList>
+      </DashBoardTechListOrganizer>
     </MainStyled>
   );
 }

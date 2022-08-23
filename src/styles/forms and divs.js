@@ -38,9 +38,8 @@ export const LoginDiv = styled(DivFormPattern)`
 `;
 
 export const ModalDiv = styled(LoginDiv)`
-padding-top: 0px;
-
-`
+  padding-top: 0px;
+`;
 export const RegisterDiv = styled(DivFormPattern)`
   min-height: 1000px;
 
@@ -53,13 +52,13 @@ export const HeaderStyled = styled.header`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  width: 60%; //arrumar o width e o justify-content para ficar alinhado as tecnologias
+  width: 100%; //arrumar o width e o justify-content para ficar alinhado as tecnologias
   height: ${(props) => props.height};
   background: #121214;
   border-bottom: 1px solid #212529;
-  padding: 0px 20% 0px 20%;
+
   ${(props) => props.add}
 `;
 
@@ -71,24 +70,28 @@ export const MainStyled = styled.main`
   justify-content: center;
   align-items: center;
 
-  i{
-    color:white;
+  i {
+    color: white;
   }
 `;
 
-
-
 export const DashBoardOrganizer = styled.div`
-  width: 780px;
+  width: 818px;
 
   display: flex;
-
+  gap: 20px;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
 
   @media (max-width: 800px) {
     width: 296px;
-    
+  }
+`;
+
+export const DashBoardTechListOrganizer = styled(DashBoardOrganizer)`
+  margin-top: 20pxgit ;
+  @media (max-width: 800px) {
+    width: 332px;
   }
 `;
