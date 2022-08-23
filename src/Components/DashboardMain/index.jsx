@@ -1,8 +1,6 @@
 import { MainStyled } from "../../styles/forms and divs";
-import { Title1, Title1Variation } from "../../styles/titles and text blocks";
+import { Title1 } from "../../styles/titles and text blocks";
 import DashboardTechList from "../DashboardTechList";
-
-import { useState } from "react";
 
 import Modal from "react-modal";
 

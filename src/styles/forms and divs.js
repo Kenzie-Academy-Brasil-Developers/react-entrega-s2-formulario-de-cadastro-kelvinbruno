@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Dashboard from "../Pages/Dashboard";
 
 export const GlobalForm = styled.form`
   display: flex;
@@ -77,21 +76,20 @@ export const MainStyled = styled.main`
 
 export const DashBoardOrganizer = styled.div`
   width: 818px;
-
+  margin-top: 20px;
   display: flex;
   gap: 20px;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
 
-  @media (max-width: 800px) {
+  @media (max-width: 820px) {
     width: 296px;
   }
 `;
 
 export const DashBoardTechListOrganizer = styled(DashBoardOrganizer)`
-  margin-top: 20pxgit ;
-  @media (max-width: 800px) {
+  @media (max-width: 820px) {
     width: 332px;
   }
 `;

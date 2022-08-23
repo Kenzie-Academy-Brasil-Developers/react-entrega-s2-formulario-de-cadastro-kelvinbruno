@@ -1,7 +1,7 @@
 import { TechList, TechListItem } from "./styles";
 import { Title1Res, InfoSpan } from "../../styles/titles and text blocks";
 
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { LoginContext } from "../../Contexts/Login";
 
 import { TechsContext } from "../../Contexts/Techs";

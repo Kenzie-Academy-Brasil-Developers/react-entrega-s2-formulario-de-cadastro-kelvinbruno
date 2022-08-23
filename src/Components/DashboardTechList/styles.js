@@ -15,7 +15,7 @@ export const TechList = styled.ul`
 
 
 
-  @media (max-width: 800px) {
+  @media (max-width: 820px) {
     width: 296px;
     height: 416.37px;
   }
@@ -37,7 +37,7 @@ export const TechListItem = styled.li`
   :focus {
     background: #343b41;
   }
-  @media (max-width: 800px) {
+  @media (max-width: 820px) {
     width: 296px;
     height: 416.37px;
   }

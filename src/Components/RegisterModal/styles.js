@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { LoginDiv } from "../../styles/forms and divs";
+
 
 export const ModalFormPattern = styled.form`
   display: flex;
