@@ -1,4 +1,6 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useContext } from "react";
+
+import { LoginContext } from "../Login";
 
 import { useHistory } from "react-router-dom";
 
@@ -9,6 +11,8 @@ import { KenziehubAPI } from "../../services/api";
 export const TechsContext = createContext({});
 
 const TechsProvider = ({ children }) => {
+  const { updateUserData } = useContext(LoginContext);
+
   const [modifiedTech, setModifiedTech] = useState(null);
   const [editModalIsOpen, setEditModalIsOpen] = useState(null);
 
@@ -41,6 +45,9 @@ const TechsProvider = ({ children }) => {
     KenziehubAPI.post("/users/techs", data)
       .then((response) => {
         toastSuccess("Tecnologia criada com sucesso");
+
+        updateUserData();
+        console.log(response);
         handleCloseModal();
       })
       .catch((error) => {
@@ -51,13 +58,21 @@ const TechsProvider = ({ children }) => {
 
   function deleteTech() {
     KenziehubAPI.delete(`/users/techs/${modifiedTech.id}`)
-      .then(() => toastSuccess("Tecnologia deleta com sucesso"))
+      .then(() => {
+        toastSuccess("Tecnologia deleta com sucesso");
+        updateUserData();
+        setEditModalIsOpen(false);
+      })
       .catch(() => toastError("Ops! Algo deu errado durante a exclusão"));
   }
 
   function editTech(data) {
-    KenziehubAPI.post(`/users/techs/${modifiedTech.id}`, data)
-      .then(() => toastSuccess("Tecnologia editada com sucesso"))
+    KenziehubAPI.put(`/users/techs/${modifiedTech.id}`, data)
+      .then(() => {
+        toastSuccess("Tecnologia editada com sucesso");
+        updateUserData();
+        setEditModalIsOpen(false);
+      })
       .catch(() => toastError("Ops! Algo deu errado durante a alteração"));
   }
 

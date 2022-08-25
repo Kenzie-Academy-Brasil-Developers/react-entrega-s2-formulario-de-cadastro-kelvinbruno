@@ -1,7 +1,5 @@
 import { createContext, useState, useEffect } from "react";
 
-
-
 import { useHistory } from "react-router-dom";
 
 import { toastError, toastSuccess } from "../../Toasts/toasts";
@@ -12,19 +10,28 @@ export const LoginContext = createContext({});
 
 const LoginProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const history = useHistory();
 
   useEffect(() => {
     async function loadUser() {
       const token = localStorage.getItem("@kenziehub:token");
-
+      console.log(token)
       if (token) {
         KenziehubAPI.defaults.headers.authorization = `Bearer ${token}`;
 
-        KenziehubAPI.get("/profile")
-          .then((data) => setUser(data))
-          .catch((error) => console.log(error));
+        await KenziehubAPI.get("/profile")
+          .then((data) => {
+            setUser(data.data);
+            setLoading(false);
+          })
+          .catch((error) => {
+            console.log(error);
+            setLoading(false);
+          });
+      } else {
+        history.push("/");
       }
     }
 
@@ -35,6 +42,19 @@ const LoginProvider = ({ children }) => {
     setUser(null);
     window.localStorage.clear();
     history.push("/");
+  }
+
+  function updateUserData() {
+    const token = localStorage.getItem("@kenziehub:token");
+    KenziehubAPI.defaults.headers.authorization = `Bearer ${token}`;
+
+    KenziehubAPI.get("/profile")
+      .then((data) => {
+        setUser(data.data);
+      })
+      .catch((error) => {
+        console.log("o erro é :", error);
+      });
   }
 
   const signIn = async (data) => {
@@ -64,7 +84,7 @@ const LoginProvider = ({ children }) => {
   };
 
   return (
-    <LoginContext.Provider value={{ user, signIn, logout }}>
+    <LoginContext.Provider value={{ user, signIn, logout, loading, updateUserData }}>
       {children}
     </LoginContext.Provider>
   );

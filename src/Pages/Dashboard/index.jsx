@@ -7,12 +7,16 @@ import { LoginContext } from "../../Contexts/Login";
 import { useHistory } from "react-router-dom";
 
 export default function Dashboard() {
-  const { user } = useContext(LoginContext);
+  const { user, loading, logout } = useContext(LoginContext);
   const history = useHistory();
+
+  if(loading){
+    return <div>Carregando ...</div>
+  }
 
   return user ? (
     <div>
-      <DashboardHeader />
+      <DashboardHeader logout ={logout} />
       <DashboardSubHeader user ={user}/>
       <DashboardMain/>:
     </div>

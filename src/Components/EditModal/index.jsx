@@ -40,16 +40,16 @@ export default function EditModal() {
         <InputDiv>
           <FormLabel>Nome</FormLabel>
           <FormInput
-            value={modifiedTech.title}
             {...register("title")}
-            placeholder="Tecnologia"
+            placeholder={modifiedTech.title}
           />
           <ErrorLabel>{errors.title?.message}</ErrorLabel>
         </InputDiv>
 
         <InputDiv>
           <FormLabel>Selecionar módulo</FormLabel>
-          <FormSelect value={modifiedTech.status} {...register("status")}>
+          <FormSelect {...register("status")}>
+            
             <option value="" disabled selected>
               Selecione o status
             </option>

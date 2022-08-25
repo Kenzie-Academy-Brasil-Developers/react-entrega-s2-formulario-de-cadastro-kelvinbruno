@@ -5,15 +5,14 @@ export const TechList = styled.ul`
   height: 416px;
   background: #212529;
   border-radius: 4px;
-  padding: 22px 19px;
-
+  padding: 90px 19px 22px 19px;
+  overflow-y: scroll;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   gap: 20px;
   align-items: center;
   justify-content: center;
-
-
 
   @media (max-width: 820px) {
     width: 296px;
@@ -42,5 +41,3 @@ export const TechListItem = styled.li`
     height: 416.37px;
   }
 `;
-
-
