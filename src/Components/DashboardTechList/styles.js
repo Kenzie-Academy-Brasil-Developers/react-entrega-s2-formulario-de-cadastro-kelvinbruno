@@ -10,9 +10,11 @@ export const TechList = styled.ul`
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+
+
 
   @media (max-width: 820px) {
     width: 296px;
@@ -31,6 +33,7 @@ export const TechListItem = styled.li`
   height: 49px;
   background: #121214;
   border-radius: 4.06066px;
+  margin-top: 20px;
   cursor: pointer;
   :hover,
   :focus {
