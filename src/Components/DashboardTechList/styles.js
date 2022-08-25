@@ -10,11 +10,9 @@ export const TechList = styled.ul`
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
-  
+
   align-items: center;
   justify-content: space-between;
-
-
 
   @media (max-width: 820px) {
     width: 296px;
@@ -40,7 +38,7 @@ export const TechListItem = styled.li`
     background: #343b41;
   }
   @media (max-width: 820px) {
-    width: 296px;
-    height: 416.37px;
+    width: 279px;
+    height: 48.73px;
   }
 `;
