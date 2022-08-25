@@ -39,7 +39,7 @@ export default function DashboardTechList() {
             );
           })
         ) : (
-          <>aaaaaaaaa</>
+          <Title1Res>Você não possui nenhuma tecnologia registrada :/</Title1Res>
         )}
       </TechList>
     </div>

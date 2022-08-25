@@ -5,7 +5,7 @@ export const TechList = styled.ul`
   height: 416px;
   background: #212529;
   border-radius: 4px;
-  padding: 90px 19px 22px 19px;
+  padding: 22px 19px 22px 19px;
   overflow-y: scroll;
   overflow-x: hidden;
   display: flex;
