@@ -112,7 +112,7 @@ const TechsProvider = ({ children }: ITechsProviderProps) => {
         }
       );
       const { title } = response.data;
-      toastSuccess(`${title} foi `);
+      toastSuccess(`${title} foi alterada`);
       updateUserData();
     } catch (errors) {
       toastError(`Ops! Algo deu errado durante a edição`);

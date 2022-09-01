@@ -6,7 +6,6 @@ import Modal from "react-modal";
 
 import { AddButton } from "./styles";
 
-
 import RegisterModal from "../RegisterModal";
 
 import { UseTechsContext } from "../../Contexts/Techs";
