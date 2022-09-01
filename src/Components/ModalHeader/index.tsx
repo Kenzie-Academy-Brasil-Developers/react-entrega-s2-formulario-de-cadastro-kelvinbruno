@@ -1,11 +1,16 @@
 import { ModalHeaderPattern, ModalHeaderTitle } from "../RegisterModal/styles";
 
-import { useContext } from "react";
 
-import { TechsContext } from "../../Contexts/Techs";
 
-export default function ModalHeader({ titleContent }) {
-  const { handleCloseModal } = useContext(TechsContext);
+import { UseTechsContext } from "../../Contexts/Techs";
+
+
+interface IModalHeaderProps{
+  titleContent: string;
+}
+
+export default function ModalHeader({ titleContent } : IModalHeaderProps) {
+  const { handleCloseModal } = UseTechsContext();
 
   return (
     <ModalHeaderPattern>

@@ -2,9 +2,9 @@ import { useContext } from "react";
 
 import { TechsContext } from "../../Contexts/Techs";
 
-import Modal from "react-modal";
-
 import ModalHeader from "../ModalHeader";
+
+import { ITech } from "../../validators/techs";
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -28,7 +28,7 @@ export default function EditModal() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<ITech>({
     resolver: yupResolver(techsSchema),
   });
 
@@ -39,17 +39,19 @@ export default function EditModal() {
 
         <InputDiv>
           <FormLabel>Nome</FormLabel>
-          <FormInput
-            {...register("title")}
-            placeholder={modifiedTech.title}
-          />
+          {modifiedTech && (
+            <FormInput
+              value={modifiedTech.title}
+              {...register("title")}
+              placeholder={modifiedTech?.title}
+            />
+          )}
           <ErrorLabel>{errors.title?.message}</ErrorLabel>
         </InputDiv>
 
         <InputDiv>
           <FormLabel>Selecionar módulo</FormLabel>
           <FormSelect {...register("status")}>
-            
             <option value="" disabled selected>
               Selecione o status
             </option>

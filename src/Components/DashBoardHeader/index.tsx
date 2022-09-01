@@ -4,9 +4,13 @@ import { HeaderStyled } from "../../styles/forms and divs";
 
 import { DashBoardOrganizer } from "../../styles/forms and divs";
 
-export default function DashboardHeader({logout}) {
+interface IDashboardHeaderProps{
+  logout: () => void;
+}
+
+export default function DashboardHeader({logout} : IDashboardHeaderProps) {
   return (
-    <HeaderStyled height = '72px'>
+    <HeaderStyled height = {72}>
       <DashBoardOrganizer>
       <Logo />
       <LogoutButton logout={logout} />

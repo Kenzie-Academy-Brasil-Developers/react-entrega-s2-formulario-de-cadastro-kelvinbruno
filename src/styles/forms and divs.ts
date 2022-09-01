@@ -47,18 +47,23 @@ export const RegisterDiv = styled(DivFormPattern)`
   }
 `;
 
-export const HeaderStyled = styled.header`
+interface IHeaderStyled {
+  height: number;
+  add?: string;
+}
+
+export const HeaderStyled = styled.header<IHeaderStyled>`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   width: 100%; //arrumar o width e o justify-content para ficar alinhado as tecnologias
-  height: ${(props) => props.height};
+  height: ${({ height }: IHeaderStyled) => height}px;
   background: #121214;
   border-bottom: 1px solid #212529;
 
-  ${(props) => props.add}
+  ${({ add }: IHeaderStyled) => add}
 `;
 
 export const MainStyled = styled.main`

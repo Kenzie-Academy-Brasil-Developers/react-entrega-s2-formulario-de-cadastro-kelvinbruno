@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-
-
 export const ModalFormPattern = styled.form`
   display: flex;
   flex-direction: column;

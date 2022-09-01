@@ -6,7 +6,10 @@ import { BrowserRouter } from "react-router-dom";
 import GlobalStyle from "./styles/global";
 import Providers from "./Contexts";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const root = ReactDOM.createRoot(
+  document.getElementById("root") as HTMLElement
+);
+
 root.render(
   <React.StrictMode>
     <BrowserRouter>

@@ -17,11 +17,11 @@ export const Title1Res /* res = resizable */ = styled(Title1)`
 `;
 
 export const Title1Variation = styled(Title1)`
-font-size: 16px;
-color:#FFFFFF;
-line-height: 24px;
-font-weight: 400;
-`
+  font-size: 16px;
+  color: #ffffff;
+  line-height: 24px;
+  font-weight: 400;
+`;
 
 export const InfoSpan = styled.span`
   display: block;
@@ -62,8 +62,6 @@ export const ErrorLabel = styled(FormLabel)`
   }
 `;
 
-
-
 export const LogoStyle = styled.span`
   display: block;
   font-family: "Inter";
@@ -73,5 +71,3 @@ export const LogoStyle = styled.span`
   line-height: 50px;
   color: #ff577f;
 `;
-
-

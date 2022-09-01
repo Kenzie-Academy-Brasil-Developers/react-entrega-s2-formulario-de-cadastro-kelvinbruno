@@ -1,5 +1,9 @@
 import { ShortBlackButton } from "../../styles/buttons";
 
-export default function LogoutButton({logout}) {
+interface ILogoutButtonProps{
+  logout: () => void;
+}
+
+export default function LogoutButton({logout}: ILogoutButtonProps) {
   return <ShortBlackButton onClick={() => logout()}>Sair</ShortBlackButton>;
 }

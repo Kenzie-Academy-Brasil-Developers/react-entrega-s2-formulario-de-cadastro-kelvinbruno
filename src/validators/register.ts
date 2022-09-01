@@ -27,3 +27,14 @@ export const registerSchema = yup.object().shape({
   contact: yup.string().required("Contato obrigatório"),
   course_module: yup.string().required("Módulo é necessário para cadastro"),
 });
+
+
+export interface IFormRegister {
+  name: string;
+  email: string;
+  password: string;
+  passwordConfirmation?: string;
+  bio: string;
+  contact: string;
+  course_module: string;
+}

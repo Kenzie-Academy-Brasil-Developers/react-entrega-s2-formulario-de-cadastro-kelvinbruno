@@ -1,22 +1,19 @@
 import { TechList, TechListItem } from "./styles";
 import { Title1Res, InfoSpan } from "../../styles/titles and text blocks";
 
-import { useContext } from "react";
-import { LoginContext } from "../../Contexts/Login";
+import { UseTechsContext } from "../../Contexts/Techs";
 
-import { TechsContext } from "../../Contexts/Techs";
-
-
+import { useLoginContext } from "../../Contexts/Login";
 
 import Modal from "react-modal";
 
 import EditModal from "../EditModal";
 
 export default function DashboardTechList() {
-  const { user } = useContext(LoginContext);
+  const { user } = useLoginContext();
 
   const { handleOpenEditModal, handleCloseModal, editModalIsOpen } =
-    useContext(TechsContext);
+    UseTechsContext();
 
   return (
     <div>
@@ -25,11 +22,11 @@ export default function DashboardTechList() {
       </Modal>
 
       <TechList>
-        {user.techs.length > 0 ? (
-          user.techs.map((tech) => {
+        {user && user.techs.length > 0 ? (
+          user?.techs.map((tech) => {
             return (
               <TechListItem
-                onClick={(e) => handleOpenEditModal(tech)}
+                onClick={() => handleOpenEditModal(tech)}
                 key={tech.id}
                 id={tech.id}
               >
@@ -39,7 +36,9 @@ export default function DashboardTechList() {
             );
           })
         ) : (
-          <Title1Res>Você não possui nenhuma tecnologia registrada :/</Title1Res>
+          <Title1Res>
+            Você não possui nenhuma tecnologia registrada :/
+          </Title1Res>
         )}
       </TechList>
     </div>

@@ -1,7 +1,10 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useHistory  } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+//interfaces
+import { IFormRegister } from "../../validators/register";
 
 // context
 import { useContext } from "react";
@@ -31,14 +34,14 @@ import { GlobalForm, RegisterDiv } from "../../styles/forms and divs";
 // styles import end
 
 export default function Register() {
-  const history = useHistory();
+  const navigate = useNavigate();
   const { signUp } = useContext(RegisterContext); //login function
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm <IFormRegister>({
     resolver: yupResolver(registerSchema),
   });
 
@@ -66,7 +69,7 @@ export default function Register() {
             type="password"
             placeholder="Senha"
             {...register("password", { minLength: 8 })}
-            rules={{ required: true, minLength: 3 }}
+         
           />
           <ErrorLabel> {errors.password?.message}</ErrorLabel>
         </InputDiv>
@@ -129,7 +132,7 @@ export default function Register() {
           <SecondButton
             onClick={(event) => {
               event.preventDefault();
-              history.push(`/`);
+              navigate('/');
             }}
           >
             Entrar

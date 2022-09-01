@@ -6,11 +6,10 @@ import Modal from "react-modal";
 
 import { AddButton } from "./styles";
 
-import { useContext } from "react";
-
-import { TechsContext } from "../../Contexts/Techs";
 
 import RegisterModal from "../RegisterModal";
+
+import { UseTechsContext } from "../../Contexts/Techs";
 
 import {
   DashBoardTechListOrganizer,
@@ -19,7 +18,7 @@ import {
 
 export default function DashboardMain() {
   const { modalIsOpen, handleCloseModal, handleOpenModal, customModal } =
-    useContext(TechsContext);
+    UseTechsContext();
 
   return (
     <MainStyled>

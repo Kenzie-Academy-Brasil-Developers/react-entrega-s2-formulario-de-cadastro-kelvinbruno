@@ -2,7 +2,10 @@ import React from "react";
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+//interfaces
+import { ILogin } from "../../validators/login";
 
 // context
 import { useContext } from "react";
@@ -26,8 +29,8 @@ import { PrimaryButton, SecondButton } from "../../styles/buttons";
 import { GlobalForm, LoginDiv } from "../../styles/forms and divs";
 // styles import end
 
-export default function Login({ setUser }) {
-  const history = useHistory();
+export default function Login() {
+  const navigate = useNavigate();
 
   const { signIn } = useContext(LoginContext); //login function
 
@@ -35,7 +38,7 @@ export default function Login({ setUser }) {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<ILogin>({
     resolver: yupResolver(loginSchema),
   });
 
@@ -68,7 +71,7 @@ export default function Login({ setUser }) {
         <SecondButton
           onClick={(event) => {
             event.preventDefault();
-            history.push(`/register`);
+            navigate(`/register`);
           }}
         >
           Cadastre-se

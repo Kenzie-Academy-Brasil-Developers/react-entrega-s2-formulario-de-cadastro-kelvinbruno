@@ -1,12 +1,17 @@
+import { ReactNode } from "react";
 import LoginProvider from "./Login";
 import RegisterProvider from "./Register";
 import TechsProvider from "./Techs";
 
-const Providers = ({ children }) => {
+interface IProviders {
+  children: ReactNode;
+}
+
+const Providers = ({ children }: IProviders) => {
   return (
     <RegisterProvider>
       <LoginProvider>
-        <TechsProvider>{children} </TechsProvider>
+        <TechsProvider>{children}</TechsProvider>
       </LoginProvider>
     </RegisterProvider>
   );
